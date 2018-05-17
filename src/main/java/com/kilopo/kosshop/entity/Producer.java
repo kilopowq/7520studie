@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class Category extends BaseEntity {
+public class Producer extends BaseEntity {
     private String name;
 
     @Column(nullable = false, unique = true)
