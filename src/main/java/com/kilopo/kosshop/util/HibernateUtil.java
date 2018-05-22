@@ -22,7 +22,7 @@ public class HibernateUtil {
         properties.setProperty(Environment.PASS, "root");
         properties.setProperty(Environment.SHOW_SQL, "true");
         properties.setProperty(Environment.DIALECT, "org.hibernate.dialect.PostgreSQL9Dialect");
-        properties.setProperty(Environment.HBM2DDL_AUTO, "create");
+        properties.setProperty(Environment.HBM2DDL_AUTO, "update");
         properties.setProperty(Environment.ENABLE_LAZY_LOAD_NO_TRANS, "true");
         Configuration cfg = new Configuration().setProperties(properties);
         cfg.addAnnotatedClass(Address.class);
