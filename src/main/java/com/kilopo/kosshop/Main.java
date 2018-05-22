@@ -1,13 +1,17 @@
 package com.kilopo.kosshop;
 
-import com.kilopo.kosshop.util.HibernateUtil;
-import org.hibernate.SessionFactory;
+import com.kilopo.kosshop.DAO.Impl.AddressDAOImpl;
+import com.kilopo.kosshop.DAO.Impl.CategoryDAOImpl;
+import com.kilopo.kosshop.DAO.Impl.UserDAOImpl;
+import com.kilopo.kosshop.entity.Address;
+
+import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Oki doki!!!");
-        System.out.println("I've already been there!!!");
-        System.out.println("!!!!!!!!!!!!!!!!!!");
-        SessionFactory session = HibernateUtil.getSessionFactory();
+    public static void main(String[] args)throws SQLException {
+        AddressDAOImpl a = new AddressDAOImpl();
+        Address aa = a.getById(2L);
+        System.out.println(aa);
+
     }
 }
