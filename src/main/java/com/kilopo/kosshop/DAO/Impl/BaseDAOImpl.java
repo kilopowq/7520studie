@@ -27,7 +27,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
     private EntityManager entityManager ;
 
     BaseDAOImpl() {
-        entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+          entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     public T getNewId(Long id){
