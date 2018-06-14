@@ -18,7 +18,6 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
     private EntityManager entityManager;
 
     BaseDAOImpl() {
-
     }
 
     public BaseDAOImpl(Class<T> entityClass) {
