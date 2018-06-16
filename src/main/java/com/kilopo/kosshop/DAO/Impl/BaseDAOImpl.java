@@ -1,84 +1,88 @@
 package com.kilopo.kosshop.DAO.Impl;
 
 import com.kilopo.kosshop.DAO.BaseDAO;
-import com.kilopo.kosshop.util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import java.lang.reflect.ParameterizedType;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import java.util.List;
 import java.util.Optional;
 
-public class BaseDAOImpl<T> implements BaseDAO {
-    private final Class<T> entityClass;
+@Repository
+public class BaseDAOImpl<T> implements BaseDAO<T> {
+    private Class<T> entityClass;
 
-    BaseDAOImpl() {
-        entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    @Autowired
+    private EntityManager entityManager;
+
+    public BaseDAOImpl() {
+    }
+
+    public BaseDAOImpl(Class<T> entityClass) {
+        this.entityClass = entityClass;
     }
 
     public T getById(Long id) {
         List<T> list = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            try {
-                session.beginTransaction();
-                Query query = session.createQuery("FROM " + entityClass.getName() + " AS a WHERE a.id = ?");
-                query.setParameter(0, id);
-                list = query.list();
-                session.getTransaction().commit();
-            } catch (Exception e) {
-                session.getTransaction().rollback();
-                e.printStackTrace();
-            }
-            Optional<T> first = list.stream().findFirst();
-            return first.orElse(null);
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            Query query = entityManager.createQuery("FROM " + entityClass.getName() + " AS a WHERE a.id = :id");
+            query.setParameter("id", id);
+            list = query.getResultList();
+            entityTransaction.commit();
+        } catch (Exception e) {
+            entityTransaction.rollback();
+            e.printStackTrace();
         }
+        Optional<T> first = list.stream().findFirst();
+        return first.orElse(null);
+    }
+
+    public boolean addOrUpdate(Object value) {
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            entityManager.merge(value);
+            entityTransaction.commit();
+        } catch (Exception e) {
+            entityTransaction.rollback();
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     public boolean delete(Long id) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            try {
-                session.beginTransaction();
-                Query query = session.createQuery("DELETE FROM " + entityClass.getName() + " AS a WHERE a.id = ?");
-                query.setParameter(0, id);
-                query.executeUpdate();
-                session.getTransaction().commit();
-            } catch (Exception e) {
-                session.getTransaction().rollback();
-                e.printStackTrace();
-                return false;
-            }
-            return true;
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            Query query = entityManager.createQuery("DELETE FROM " + entityClass.getName() + " AS a WHERE a.id = :id");
+            query.setParameter("id", id);
+            query.executeUpdate();
+            entityTransaction.commit();
+        } catch (Exception e) {
+            entityTransaction.rollback();
+            e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     public List getAll() {
         List<T> list = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            try {
-                session.beginTransaction();
-                Query query = session.createQuery("FROM " + entityClass.getName() + " AS a ORDER BY a.id");
-                list = query.list();
-                session.getTransaction().commit();
-            } catch (Exception e) {
-                session.getTransaction().rollback();
-                e.printStackTrace();
-            }
-            return list;
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        try {
+            entityTransaction.begin();
+            Query query = entityManager.createQuery("FROM " + entityClass.getName() + " AS a ORDER BY a.id");
+            list = query.getResultList();
+            entityTransaction.commit();
+        } catch (Exception e) {
+            entityTransaction.rollback();
+            e.printStackTrace();
         }
-    }
-
-    public boolean addOrUpdate(Object value) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            try {
-                session.beginTransaction();
-                session.saveOrUpdate(value);
-                session.getTransaction().commit();
-            } catch (Exception e) {
-                session.getTransaction().rollback();
-                e.printStackTrace();
-                return false;
-            }
-            return true;
-        }
+        return list;
     }
 }
