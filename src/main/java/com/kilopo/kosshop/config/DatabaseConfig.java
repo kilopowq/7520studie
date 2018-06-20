@@ -1,4 +1,4 @@
-package com.kilopo.kosshop.util;
+package com.kilopo.kosshop.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,15 +7,21 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+import static org.hibernate.cfg.Environment.DIALECT;
+import static org.hibernate.cfg.Environment.SHOW_SQL;
+import static org.hibernate.cfg.Environment.HBM2DDL_AUTO;
+
 @Configuration
+@EnableTransactionManagement
 @PropertySource("classpath:db.properties")
 @ComponentScan("com.kilopo.kosshop")
 public class DatabaseConfig {
@@ -24,20 +30,15 @@ public class DatabaseConfig {
     private Environment env;
 
     @Bean
-    public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
-        return entityManagerFactory.createEntityManager();
-    }
-
-    @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
         em.setPackagesToScan(env.getRequiredProperty("db.entity.package"));
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         Properties additionalProperties = new Properties();
-        additionalProperties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
-        additionalProperties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
-        additionalProperties.put("hibernate.hbm2ddl.auto", env.getRequiredProperty("hibernate.hbm2ddl.auto"));
+        additionalProperties.put(DIALECT, env.getRequiredProperty("hibernate.dialect"));
+        additionalProperties.put(SHOW_SQL, env.getRequiredProperty("hibernate.show_sql"));
+        additionalProperties.put(HBM2DDL_AUTO, env.getRequiredProperty("hibernate.hbm2ddl.auto"));
         em.setJpaProperties(additionalProperties);
         em.afterPropertiesSet();
         return em;
@@ -51,5 +52,12 @@ public class DatabaseConfig {
         ds.setUsername(env.getRequiredProperty("db.username"));
         ds.setPassword(env.getRequiredProperty("db.password"));
         return ds;
+    }
+
+    @Bean
+    public PlatformTransactionManager platformTransactionManager() {
+        JpaTransactionManager manager = new JpaTransactionManager();
+        manager.setEntityManagerFactory(entityManagerFactory().getObject());
+        return manager;
     }
 }

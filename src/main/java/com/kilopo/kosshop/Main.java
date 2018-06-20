@@ -1,7 +1,7 @@
 package com.kilopo.kosshop;
 
 import com.kilopo.kosshop.DAO.AddressDAO;
-import com.kilopo.kosshop.util.DatabaseConfig;
+import com.kilopo.kosshop.config.DatabaseConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.SQLException;
@@ -12,7 +12,6 @@ public class Main {
         context.register(DatabaseConfig.class);
         context.refresh();
         AddressDAO a = context.getBean(AddressDAO.class);
-        System.out.println(a.getById(2L));
-        System.out.println(a.getById(2L));
+        System.out.println(a.getById(5L));
     }
 }

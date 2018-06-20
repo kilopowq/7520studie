@@ -1,20 +1,19 @@
 package com.kilopo.kosshop.DAO.Impl;
 
 import com.kilopo.kosshop.DAO.BaseDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class BaseDAOImpl<T> implements BaseDAO<T> {
     private Class<T> entityClass;
 
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
     public BaseDAOImpl() {
@@ -25,64 +24,26 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
     }
 
     public T getById(Long id) {
-        List<T> list = null;
-        EntityTransaction entityTransaction = entityManager.getTransaction();
-        try {
-            entityTransaction.begin();
-            Query query = entityManager.createQuery("FROM " + entityClass.getName() + " AS a WHERE a.id = :id");
-            query.setParameter("id", id);
-            list = query.getResultList();
-            entityTransaction.commit();
-        } catch (Exception e) {
-            entityTransaction.rollback();
-            e.printStackTrace();
-        }
-        Optional<T> first = list.stream().findFirst();
-        return first.orElse(null);
+        return entityManager.find(entityClass, id);
     }
 
-    public boolean addOrUpdate(Object value) {
-        EntityTransaction entityTransaction = entityManager.getTransaction();
-        try {
-            entityTransaction.begin();
-            entityManager.merge(value);
-            entityTransaction.commit();
-        } catch (Exception e) {
-            entityTransaction.rollback();
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+    @Transactional
+    public T addOrUpdate(T value) {
+        entityManager.merge(value);
+        return value;
     }
 
-    public boolean delete(Long id) {
-        EntityTransaction entityTransaction = entityManager.getTransaction();
-        try {
-            entityTransaction.begin();
-            Query query = entityManager.createQuery("DELETE FROM " + entityClass.getName() + " AS a WHERE a.id = :id");
-            query.setParameter("id", id);
-            query.executeUpdate();
-            entityTransaction.commit();
-        } catch (Exception e) {
-            entityTransaction.rollback();
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+    @Transactional
+    public void delete(Long id) {
+        Query query = entityManager.createQuery("DELETE FROM " + entityClass.getName() + " AS a WHERE a.id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
     }
 
     public List getAll() {
         List<T> list = null;
-        EntityTransaction entityTransaction = entityManager.getTransaction();
-        try {
-            entityTransaction.begin();
-            Query query = entityManager.createQuery("FROM " + entityClass.getName() + " AS a ORDER BY a.id");
-            list = query.getResultList();
-            entityTransaction.commit();
-        } catch (Exception e) {
-            entityTransaction.rollback();
-            e.printStackTrace();
-        }
+        Query query = entityManager.createQuery("FROM " + entityClass.getName() + " AS a ORDER BY a.id");
+        list = query.getResultList();
         return list;
     }
 }
