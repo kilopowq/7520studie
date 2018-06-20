@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface BaseDAO<T> {
     T getById(Long id);
-    boolean addOrUpdate(T value);
-    boolean delete(Long id);
+    T addOrUpdate(T value);
+    void delete(Long id);
     List<T> getAll();
 }
