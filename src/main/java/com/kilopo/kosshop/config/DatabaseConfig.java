@@ -20,10 +20,13 @@ import static org.hibernate.cfg.Environment.DIALECT;
 import static org.hibernate.cfg.Environment.SHOW_SQL;
 import static org.hibernate.cfg.Environment.HBM2DDL_AUTO;
 
+import static constants.Constants.Database.PROPERTIES;
+import static constants.Constants.KOSSHOP;
+
 @Configuration
 @EnableTransactionManagement
-@PropertySource("classpath:db.properties")
-@ComponentScan("com.kilopo.kosshop")
+@PropertySource(PROPERTIES)
+@ComponentScan(KOSSHOP)
 public class DatabaseConfig {
 
     @Autowired
