@@ -27,6 +27,18 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
         return entityManager.find(entityClass, id);
     }
 
+    public List<T> getByColumnNameAndValue(String name, Object value) {
+        StringBuilder stringBuilder = new StringBuilder("FROM ")
+                .append(entityClass.getName())
+                .append(" AS a WHERE a.")
+                .append(name)
+                .append("= :value");
+        Query query = entityManager.createQuery(stringBuilder.toString());
+        query.setParameter("value", value);
+        List<T> list = query.getResultList();
+        return list;
+    }
+
     @Transactional
     public T addOrUpdate(T value) {
         entityManager.merge(value);
@@ -34,10 +46,19 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
     }
 
     @Transactional
-    public void delete(Long id) {
-        Query query = entityManager.createQuery("DELETE FROM " + entityClass.getName() + " AS a WHERE a.id = :id");
-        query.setParameter("id", id);
-        query.executeUpdate();
+    public boolean delete(Long id) {
+        try {
+            StringBuilder stringBuilder = new StringBuilder("DELETE FROM")
+                    .append(entityClass.getName())
+                    .append(" AS a WHERE a.id = :id");
+            Query query = entityManager.createQuery(stringBuilder.toString());
+            query.setParameter("id", id);
+            query.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public List getAll() {
