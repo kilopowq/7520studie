@@ -1,8 +1,8 @@
 package com.kilopo.kosshop.service;
 
+import com.kilopo.kosshop.entity.Product;
 import com.kilopo.kosshop.entity.Category;
 import com.kilopo.kosshop.entity.Producer;
-import com.kilopo.kosshop.entity.Product;
 
 import java.util.List;
 

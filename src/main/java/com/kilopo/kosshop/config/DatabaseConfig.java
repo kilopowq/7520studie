@@ -1,5 +1,6 @@
 package com.kilopo.kosshop.config;
 
+import com.kilopo.kosshop.constants.Constants;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,13 +21,10 @@ import static org.hibernate.cfg.Environment.DIALECT;
 import static org.hibernate.cfg.Environment.SHOW_SQL;
 import static org.hibernate.cfg.Environment.HBM2DDL_AUTO;
 
-import static constants.Constants.Database.PROPERTIES;
-import static constants.Constants.KOSSHOP;
-
 @Configuration
 @EnableTransactionManagement
-@PropertySource(PROPERTIES)
-@ComponentScan(KOSSHOP)
+@PropertySource(Constants.Database.PROPERTIES_SOURCE)
+@ComponentScan(Constants.BASE_PACKAGE)
 public class DatabaseConfig {
 
     @Autowired

@@ -4,9 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-<div>
-    this is index
-
-</div>
+<h1>This is home(JSP)</h1>
 </body>
 </html>

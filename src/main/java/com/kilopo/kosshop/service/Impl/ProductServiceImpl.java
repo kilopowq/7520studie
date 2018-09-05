@@ -1,10 +1,10 @@
 package com.kilopo.kosshop.service.Impl;
 
 import com.kilopo.kosshop.DAO.ProductDAO;
-import com.kilopo.kosshop.entity.Category;
-import com.kilopo.kosshop.entity.Producer;
 import com.kilopo.kosshop.entity.Product;
 import com.kilopo.kosshop.service.ProductService;
+import com.kilopo.kosshop.entity.Category;
+import com.kilopo.kosshop.entity.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +16,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductDAO productDAO;
 
     public boolean addProduct(Product product) {
-        if (productDAO.addOrUpdate(product) != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return productDAO.addOrUpdate(product) != null;
     }
 
     public List<Product> findByName(String name) {

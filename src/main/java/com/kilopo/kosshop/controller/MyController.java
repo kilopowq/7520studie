@@ -1,5 +1,6 @@
 package com.kilopo.kosshop.controller;
 
+import com.kilopo.kosshop.constants.Constants;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,6 +10,6 @@ public class MyController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
-        return "index";
+        return Constants.View.HOMEPAGE;
     }
 }
