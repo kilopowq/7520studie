@@ -25,6 +25,7 @@
         <spring-data-jpa.version>1.9.2.RELEASE</spring-data-jpa.version>
         <hibernate.version>5.0.2.Final</hibernate.version>
         <commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+        <apachetiles.version>3.0.5</apachetiles.version>
     </properties>
     <dependencies>
         <dependency>
@@ -86,6 +87,23 @@
             <groupId>javax.transaction</groupId>
             <artifactId>jta</artifactId>
             <version>1.1</version>
+        </dependency>
+        <!-- JSTL -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!-- Apache Tiles -->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-core</artifactId>
+            <version>${apachetiles.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+            <version>${apachetiles.version}</version>
         </dependency>
     </dependencies>
 </project>
