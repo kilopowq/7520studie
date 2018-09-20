@@ -1,6 +1,8 @@
 package com.kilopo.kosshop.DAO.Impl;
 
 import com.kilopo.kosshop.DAO.BaseDAO;
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +13,9 @@ import java.util.List;
 
 @Repository
 public class BaseDAOImpl<T> implements BaseDAO<T> {
+    @Autowired
+    private Logger logger;
+
     private Class<T> entityClass;
 
     @PersistenceContext
@@ -56,7 +61,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
             query.executeUpdate();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
             return false;
         }
     }

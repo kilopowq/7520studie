@@ -1,9 +1,13 @@
 package com.kilopo.kosshop.config;
 
 import com.kilopo.kosshop.constants.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InjectionPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -30,6 +34,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         tilesConfigurer.setDefinitions(Constants.TILES_CONF_PATH);
         tilesConfigurer.setCheckRefresh(true);
         return tilesConfigurer;
+    }
+
+    @Bean
+    @Scope("prototype")
+    public Logger logger(InjectionPoint injectionPoint) {
+        return LoggerFactory.getLogger(injectionPoint.getMember().getDeclaringClass());
     }
 
     @Override
