@@ -6,6 +6,8 @@ import com.kilopo.kosshop.entity.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProducerServiceImpl implements ProducerService {
     @Autowired
@@ -13,5 +15,10 @@ public class ProducerServiceImpl implements ProducerService {
 
     public boolean addProducer(Producer producer) {
         return producerDAO.addOrUpdate(producer) != null;
+    }
+
+    public List<Producer> findByName(String name) {
+        List<Producer> producers = producerDAO.getByColumnNameAndValue("name", name);
+        return producers;
     }
 }

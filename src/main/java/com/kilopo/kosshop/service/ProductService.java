@@ -9,6 +9,6 @@ import java.util.List;
 public interface ProductService {
     boolean addProduct(Product product);
     List<Product> findByName(String name);
-    List<Product> findByCategory(Category category);
-    List<Product> findByProducer(Producer producer);
+    List<Product> findByCategoryName(String categoryName);
+    List<Product> findByProducerName(String producerName);
 }

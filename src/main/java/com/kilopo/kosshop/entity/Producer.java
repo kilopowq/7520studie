@@ -15,4 +15,11 @@ public class Producer extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Producer{" + "id: " + getId() +
+                " name='" + name + '\'' +
+                '}';
+    }
 }

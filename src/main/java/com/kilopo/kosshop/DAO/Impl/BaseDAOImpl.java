@@ -19,7 +19,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
     private Class<T> entityClass;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     public BaseDAOImpl() {
     }
@@ -61,7 +61,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
             query.executeUpdate();
             return true;
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
             return false;
         }
     }
