@@ -7,6 +7,13 @@ import javax.persistence.Entity;
 public class Producer extends BaseEntity {
     private String name;
 
+    public Producer(){
+    }
+
+    public Producer(String name){
+        this.name = name;
+    }
+
     @Column(nullable = false, unique = true)
     public String getName() {
         return name;
@@ -14,5 +21,12 @@ public class Producer extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Producer{" + "id = " + getId() +
+                ", name = " + name +
+                '}';
     }
 }

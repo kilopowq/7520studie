@@ -4,8 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-<h1>This is home(JSP)</h1>
-<a href="/add">Add</a><br>
-<a href="/search">Search</a>
+<h2>${messageResultSearch}</h2>
 </body>
 </html>

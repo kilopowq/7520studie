@@ -1,14 +1,10 @@
 package com.kilopo.kosshop.service;
 
 import com.kilopo.kosshop.entity.Product;
-import com.kilopo.kosshop.entity.Category;
-import com.kilopo.kosshop.entity.Producer;
-
 import java.util.List;
+import java.util.Map;
 
 public interface ProductService {
-    boolean addProduct(Product product);
-    List<Product> findByName(String name);
-    List<Product> findByCategory(Category category);
-    List<Product> findByProducer(Producer producer);
+    boolean add(Product product);
+    List<Product> searchByFields(Map<String,String> mapProductParam);
 }
