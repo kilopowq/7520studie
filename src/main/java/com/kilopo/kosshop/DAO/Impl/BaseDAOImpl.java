@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class BaseDAOImpl<T> implements BaseDAO<T> {
@@ -19,7 +20,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
     private Class<T> entityClass;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     public BaseDAOImpl() {
     }
@@ -40,13 +41,18 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
                 .append("= :value");
         Query query = entityManager.createQuery(stringBuilder.toString());
         query.setParameter("value", value);
-        List<T> list = query.getResultList();
-        return list;
+        return query.getResultList();
     }
 
     @Transactional
     public T addOrUpdate(T value) {
         entityManager.merge(value);
+        return value;
+    }
+
+    @Transactional
+    public T add(T value) {
+        entityManager.persist(value);
         return value;
     }
 
@@ -67,9 +73,27 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
     }
 
     public List getAll() {
-        List<T> list = null;
-        Query query = entityManager.createQuery("FROM " + entityClass.getName() + " AS a ORDER BY a.id");
-        list = query.getResultList();
-        return list;
+        StringBuilder stringBuilder = new StringBuilder("FROM ")
+                .append(entityClass.getName())
+                .append(" AS a ORDER BY a.id");
+        Query query = entityManager.createQuery(stringBuilder.toString());
+        return query.getResultList();
+    }
+
+    public List findByFields(Map<String, String> allParams) {
+        boolean count = true;
+        StringBuilder stringBuilder = new StringBuilder("FROM ")
+                .append(entityClass.getName())
+                .append(" WHERE");
+        for (Map.Entry<String, String> entry : allParams.entrySet()) {
+            if (count) {
+                    stringBuilder.append(" " + entry.getKey() + " = \'" + entry.getValue() + "\'");
+                    count = false;
+            } else {
+                    stringBuilder.append(" AND " + entry.getKey() + " = \'" + entry.getValue() + "\'");
+            }
+        }
+        Query query = entityManager.createQuery(stringBuilder.toString());
+        return query.getResultList();
     }
 }
