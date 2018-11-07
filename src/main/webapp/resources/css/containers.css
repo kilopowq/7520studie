@@ -1,0 +1,7 @@
+.ContainerProductInfo {
+    margin: 15px;
+    width: 250px;
+    height: 380px;
+    position: relative;
+    border: 2px solid lightgray;
+}

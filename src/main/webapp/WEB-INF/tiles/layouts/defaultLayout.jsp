@@ -5,18 +5,21 @@
 
 <html>
 <head>
-    <title>Home</title>
-    this is default layout
-    <style>
-        <%@include file="/resources/css/style.css" %>
-    </style>
+    <link rel="shortcut icon" href="/images/Logo.png" type="image/png">
+    <link href="/webjars/font-awesome/5.5.0/css/all.css" rel="stylesheet">
+    <link href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/containers.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
 </head>
+<body>
 
-<section id="site-content">
-    <tiles:insertAttribute name="body"/>
-</section>
+<tiles:insertAttribute name="header"/>
 
-<footer id="footer">
-    <tiles:insertAttribute name="footer"/>
-</footer>
+<tiles:insertAttribute name="body"/>
+
+<tiles:insertAttribute name="footer"/>
+
+<script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
 </html>

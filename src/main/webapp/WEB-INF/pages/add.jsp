@@ -3,10 +3,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>AddPage</title>
 </head>
 <body>
-<table style="width:100%">
+<table class="text-center" style="width:100%">
     <tr>
         <th>
             <form method="get" action="/category/add">

@@ -1,21 +1,127 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
     background-color: #ff6600;
     text-align: center;
     font-family: Arial, Verdana, sans-serif;
-}
-
-h1 {
-    background-color: rgb(215, 165, 196);
+    margin-bottom: 220px;
 }
 
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    background-color: #ff4188;
+    background-color: lightblue;
     text-align: center;
-    border-radius: 8px;
     border: 1px solid gray;
-    width: 99.33%;
-    height: 100px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 180px;
+}
+
+#social {
+    margin: 10px 10px;
+    text-align: center;
+}
+
+.smGlobalBtn { /* global button class */
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ddd; /* add border to the buttons */
+    box-shadow: 0 3px 3px #999;
+    padding: 0px;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: 23px;
+    font-weight: normal;
+    line-height: 2em;
+    border-radius: 27px;
+    -moz-border-radius: 27px;
+    -webkit-border-radius: 27px;
+}
+
+/* facebook button class*/
+.facebookBtn {
+    background: #4060A5;
+}
+
+.facebookBtn:before { /* use :before to add the relevant icons */
+    font-family: "Font Awesome 5 Brands";
+    content: "\f09a"; /* add facebook icon */
+}
+
+.facebookBtn:hover {
+    color: #4060A5;
+    background: #fff;
+    border-color: #4060A5; /* change the border color on mouse hover */
+}
+
+/* twitter button class*/
+.instagramBtn {
+    background: #e4405f;
+}
+
+.instagramBtn:before {
+    font-family: "Font Awesome 5 Brands";
+    content: "\f16d"; /* add instagram icon */
+
+}
+
+.instagramBtn:hover {
+    color: #e4405f;
+    background: #fff;
+    border-color: #e4405f;
+}
+
+/* telegram button class*/
+.telegramBtn {
+    background: #0084ff;
+}
+
+.telegramBtn:before {
+    font-family: "Font Awesome 5 Brands";
+    content: "\f3fe"; /* add telegram icon */
+}
+
+.telegramBtn:hover {
+    color: #0084ff;
+    background: #fff;
+    border-color: #0084ff;
+}
+
+/* viber button class*/
+.viberBtn {
+    background: #8f5db7;
+}
+
+.viberBtn:before {
+    font-family: "Font Awesome 5 Brands";
+    content: "\f409"; /* add viber icon */
+}
+
+.viberBtn:hover {
+    color: #8f5db7;
+    background: #fff;
+    border-color: #8f5db7;
+}
+
+/* vk button class*/
+.vkBtn {
+    background: #4c75a3;
+}
+
+.vkBtn:before {
+    font-family: "Font Awesome 5 Brands";
+    content: "\f189"; /* add pinterest icon */
+}
+
+.vkBtn:hover {
+    color: #4c75a3;
+    background: #fff;
+    border-color: #4c75a3;
 }
