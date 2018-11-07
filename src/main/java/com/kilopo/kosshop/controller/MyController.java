@@ -17,6 +17,16 @@ public class MyController {
     @Autowired
     private ProducerDAO producerDAO;
 
+    @RequestMapping(value = "/home3", method = RequestMethod.GET)
+    public String home3() {
+        return "home3";
+    }
+
+    @RequestMapping(value = "/home2", method = RequestMethod.GET)
+    public String home2() {
+        return "home2";
+    }
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
         return Constants.View.HOME_PAGE;
