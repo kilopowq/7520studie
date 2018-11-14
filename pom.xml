@@ -12,6 +12,29 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.github.jsimone</groupId>
+                                    <artifactId>webapp-runner</artifactId>
+                                    <version>8.0.30.2</version>
+                                    <destFileName>webapp-runner.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -26,6 +49,12 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
     <properties>
         <spring.version>4.3.9.RELEASE</spring.version>
@@ -109,7 +138,7 @@
             <artifactId>jta</artifactId>
             <version>1.1</version>
         </dependency>
-            <!-- JSTL -->
+        <!-- JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
@@ -156,4 +185,29 @@
             <version>3.3.1</version>
         </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+            <id>develop</id>
+            <properties>
+                <hostname>localhost</hostname>
+                <port>5432</port>
+                <database>kosshop</database>
+                <username>postgres</username>
+                <password>root</password>
+            </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <properties>
+                <hostname>ec2-79-125-8-105.eu-west-1.compute.amazonaws.com</hostname>
+                <port>5432</port>
+                <database>ddo5hl7agkuutn?sslmode=require</database>
+                <username>ftlthqmxvihogh</username>
+                <password>0bb0af1a09efd8c09f9cf29d06d1dec97d6061978c3e99e7185472103c373bf0</password>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
 </project>
