@@ -8,8 +8,57 @@
     <artifactId>com.kilopo.kosshop</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+    <properties>
+        <spring.version>4.3.9.RELEASE</spring.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <spring-data-jpa.version>1.9.2.RELEASE</spring-data-jpa.version>
+        <hibernate.version>5.0.2.Final</hibernate.version>
+        <commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+        <apachetiles.version>3.0.5</apachetiles.version>
+        <slf4jVersion>1.7.5</slf4jVersion>
+        <flyway.version>5.1.4</flyway.version>
+    </properties>
+    <profiles>
+        <profile>
+            <id>develop</id>
+            <properties>
+                <hostname>localhost</hostname>
+                <port>5432</port>
+                <database>kosshop</database>
+                <username>postgres</username>
+                <password>root</password>
+            </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <properties>
+                <hostname>ec2-79-125-8-105.eu-west-1.compute.amazonaws.com</hostname>
+                <port>5432</port>
+                <database>ddo5hl7agkuutn?sslmode=require</database>
+                <username>ftlthqmxvihogh</username>
+                <password>0bb0af1a09efd8c09f9cf29d06d1dec97d6061978c3e99e7185472103c373bf0</password>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway.version}</version>
+                <configuration>
+                    <sqlMigrationSeparator>__</sqlMigrationSeparator>
+                    <locations>
+                        <location>filesystem:src/main/resources/db/migration</location>
+                    </locations>
+                    <url>jdbc:postgresql://${hostname}:${port}/${database}</url>
+                    <user>${username}</user>
+                    <password>${password}</password>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -56,15 +105,7 @@
             </resource>
         </resources>
     </build>
-    <properties>
-        <spring.version>4.3.9.RELEASE</spring.version>
-        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
-        <spring-data-jpa.version>1.9.2.RELEASE</spring-data-jpa.version>
-        <hibernate.version>5.0.2.Final</hibernate.version>
-        <commons-dbcp2.version>2.1.1</commons-dbcp2.version>
-        <apachetiles.version>3.0.5</apachetiles.version>
-        <slf4jVersion>1.7.5</slf4jVersion>
-    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -184,30 +225,11 @@
             <artifactId>jquery</artifactId>
             <version>3.3.1</version>
         </dependency>
+        <!-- flyway-core -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>${flyway.version}</version>
+        </dependency>
     </dependencies>
-    <profiles>
-        <profile>
-            <id>develop</id>
-            <properties>
-                <hostname>localhost</hostname>
-                <port>5432</port>
-                <database>kosshop</database>
-                <username>postgres</username>
-                <password>root</password>
-            </properties>
-        </profile>
-        <profile>
-            <id>release</id>
-            <properties>
-                <hostname>ec2-79-125-8-105.eu-west-1.compute.amazonaws.com</hostname>
-                <port>5432</port>
-                <database>ddo5hl7agkuutn?sslmode=require</database>
-                <username>ftlthqmxvihogh</username>
-                <password>0bb0af1a09efd8c09f9cf29d06d1dec97d6061978c3e99e7185472103c373bf0</password>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-    </profiles>
 </project>
