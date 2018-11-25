@@ -2,7 +2,9 @@ package com.kilopo.kosshop.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.EnumType;
 
 @Entity
 public class Product extends BaseEntity {
@@ -11,6 +13,8 @@ public class Product extends BaseEntity {
     private String description;
     private Category category;
     private Producer producer;
+    private String image;
+    private Color color;
 
     @Column(nullable = false)
     public String getName() {
@@ -37,6 +41,16 @@ public class Product extends BaseEntity {
         return producer;
     }
 
+    @Column
+    public String getImage() {
+        return image;
+    }
+
+    @Enumerated(EnumType.STRING)
+    public Color getColor() {
+        return color;
+    }
+
     public void setProducer(Producer producer) {
         this.producer = producer;
     }
@@ -57,14 +71,11 @@ public class Product extends BaseEntity {
         this.category = category;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" + "id = " + getId() +
-                ", name = " + name +
-                ", price = " + price +
-                ", description = " + description +
-                ", category = " + category +
-                ", producer = " + producer +
-                '}';
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

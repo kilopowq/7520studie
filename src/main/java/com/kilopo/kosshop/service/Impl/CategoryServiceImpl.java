@@ -12,6 +12,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryDAO categoryDAO;
 
+
     @Override
     public Category add(Category category) {
         List<Category> categories = categoryDAO.getAll();
@@ -21,5 +22,10 @@ public class CategoryServiceImpl implements CategoryService {
             }
         }
         return categoryDAO.add(category);
+    }
+
+    @Override
+    public List<Category> getAll() {
+        return categoryDAO.getAll();
     }
 }

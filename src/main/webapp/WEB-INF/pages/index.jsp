@@ -1,12 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>HomePage</title>
 </head>
-<body style="background-color: white">
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <h1>Virgin</h1>
-    <p>Beauty, style, uniqueness</p>
+<body>
+<div class="jumbotron my-jumbotron">
+    <h1><b class="word-color-red">VIRGIN</b><i class="word-color-light-red">SHOP</i></h1>
+    <h3><b class="word-color-purple">for</b><i class="word-color-light-blue"> the born to be</i> <b class="word-color-light-purple">beautiful</b></h3>
 </div>
 <div id="demo" class="carousel slide" data-ride="carousel">
     <ul class="carousel-indicators">
@@ -16,24 +17,21 @@
     </ul>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="/images/carousel1.jpg" alt="Los Angeles" width="1600" height="350">
+            <img src="/images/carouselOne.jpg" alt="carousel One" class="carousel-size">
             <div class="carousel-caption">
-                <h3>Some text</h3>
-                <p>some detail information</p>
+                <h5>Extend the wardrobe!</h5>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="/images/carousel2.jpg" alt="Chicago" width="1600" height="350">
+            <img src="/images/carouselTwo.jpeg" alt="carousel Two" class="carousel-size">
             <div class="carousel-caption">
-                <h3>Some text</h3>
-                <p>some detail information</p>
+                <h5>Enjoy shopping!</h5>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="/images/carousel3.jpg" alt="New York" width="1600" height="350">
+            <img src="/images/carouselThree.jpg" alt="Carousel Three" class="carousel-size">
             <div class="carousel-caption">
-                <h3>Some text</h3>
-                <p>some detail information</p>
+                <h5>Be stylish!</h5>
             </div>
         </div>
     </div>
@@ -44,54 +42,23 @@
         <span class="carousel-control-next-icon"></span>
     </a>
 </div>
-<div class="container-fluid" style="margin-top:40px">
+<div class="container-fluid container-margin-top">
     <div class="row">
         <div class="col">
-            <div class="container-fluid" style="margin-top:30px">
-                <div class="row text-center">
-                    <div class="col-4 w-100">
-                        <div class="ContainerProductInfo w-100">
-                            <p>some information</p>
-                            <img src="/images/empty.png" style="width:200px;height:200px" alt="Image">
-                            <p>some information some information some information some information some information some information</p>
-                        </div>
-                    </div>
-                    <div class="col-4 w-100">
-                        <div class="ContainerProductInfo w-100">
-                            <p>some information</p>
-                            <img src="/images/empty.png" style="width:200px;height:200px" alt="Image">
-                            <p>some information some information some information some information some information some information</p>
-                        </div>
-                    </div>
-                    <div class="col-4 w-100">
-                        <div class="ContainerProductInfo w-100">
-                            <p>some information</p>
-                            <img src="/images/empty.png" style="width:200px;height:200px" alt="Image">
-                            <p>some information some information some information some information some information some information</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row text-center" id="cp">
-                    <div class="col-4 w-100">
-                        <div class="ContainerProductInfo w-100">
-                            <p>some information</p>
-                            <img src="/images/empty.png" style="width:200px;height:200px" alt="Image">
-                            <p>some information some information some information some information some information some information</p>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="ContainerProductInfo w-100">
-                            <p>some information some information</p>
-                            <img src="/images/empty.png" style="width:200px;height:200px" alt="Image">
-                            <p>some information some information some information some information some information some information</p>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="ContainerProductInfo w-100">
-                            <p>some information</p>
-                            <img src="/images/empty.png" style="width:200px;height:200px" alt="Image">
-                            <p>some information some information some information some information some information some information</p>
-                        </div>
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row text-center justify-content-center">
+                        <c:forEach var="Product" items="${products}">
+                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-3
+                            container-product-info text-left margin-between-container-product-info">
+                                <img src="/photos/${Product.image}" class="photo-size" alt="Image">
+                                <h6 class="text-center text-capitalize">
+                                        ${Product.category.name}: ${Product.name}</h6>
+                                <p>Producer: ${Product.producer.name}
+                                <br>${Product.description}<br>Color : ${Product.color}</p>
+                                <h6 class="container-for-price">Prise: <strong>${Product.price} USD</strong></h6>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
