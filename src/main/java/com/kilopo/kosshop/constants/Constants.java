@@ -10,8 +10,7 @@ public interface Constants {
 
     interface View {
         final String HOME_PAGE = "home";
-        final String RESULT_SEARCH_PAGE = "resultSearch";
-        final String SEARCH_PAGE = "search";
+        final String PRODUCTS_PAGE = "products";
         final String ADD_PAGE = "add";
     }
 }

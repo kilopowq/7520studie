@@ -1,23 +1,5 @@
-html {
-    position: relative;
-    min-height: 100%;
-}
-
 body {
-    background-color: #ff6600;
-    text-align: center;
-    font-family: Arial, Verdana, sans-serif;
-    margin-bottom: 220px;
-}
-
-.footer {
-    background-color: lightblue;
-    text-align: center;
-    border: 1px solid gray;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 180px;
+    background-color: antiquewhite;
 }
 
 #social {
@@ -124,4 +106,13 @@ body {
     color: #4c75a3;
     background: #fff;
     border-color: #4c75a3;
+}
+
+.myJumbotron {
+    background-image: url("../images/jumbotronBG.jpg");
+    margin-bottom:0;
+    padding-top: 2%;
+    height: 150px;
+    border-bottom: 6px dotted red;
+    text-align: center;
 }

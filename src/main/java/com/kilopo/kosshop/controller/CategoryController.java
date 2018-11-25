@@ -15,9 +15,9 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addCategory(@RequestParam("name") String name) {
         categoryService.add(new Category(name));
-        return Constants.View.HOME_PAGE;
+        return Constants.View.ADD_PAGE;
     }
 }
