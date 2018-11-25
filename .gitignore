@@ -1,6 +1,7 @@
 .idea/*
 target/*
 classes/*
+out/*
 *.iml
 .idea/
 .MF

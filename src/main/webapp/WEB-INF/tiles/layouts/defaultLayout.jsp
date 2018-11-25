@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="/images/Logo.png" type="image/png">
     <link href="/webjars/font-awesome/5.5.0/css/all.css" rel="stylesheet">
     <link href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/css/containers.css" rel="stylesheet"/>
     <link href="/css/style.css" rel="stylesheet"/>
 </head>
 <body>

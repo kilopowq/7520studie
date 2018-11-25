@@ -1,23 +1,59 @@
-html {
-    position: relative;
-    min-height: 100%;
-}
-
 body {
-    background-color: #ff6600;
-    text-align: center;
-    font-family: Arial, Verdana, sans-serif;
-    margin-bottom: 220px;
+    background-color: antiquewhite;
 }
 
-.footer {
-    background-color: lightblue;
-    text-align: center;
-    border: 1px solid gray;
+.container-product-info {
+    min-width: 260px;
+    max-width: 260px;
+    min-height: 500px;
+    border: 1px solid #000000;
+    margin: 25px 20px;
+    padding: 10px 10px;
+    background-color: white;
+    box-shadow: 0 3px 4px #999;
+}
+
+#addFormCategory {
+    margin-top: 3%;
+    border: 2px solid #000000; /* add border to the buttons */
+    border-radius: 5px;
+    text-align: left;
+    background-color: #e6fff2;
+}
+
+#addFormProduct {
+    margin-top: 3%;
+    border: 2px solid #000000; /* add border to the buttons */
+    border-radius: 5px;
+    text-align: left;
+    background-color: #e6fff2;
+}
+
+#addFormProducer {
+    margin-top: 3%;
+    border: 2px solid #000000; /* add border to the buttons */
+    border-radius: 5px;
+    text-align: left;
+    background-color: #e6fff2;
+}
+
+.container-for-price {
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 180px;
+    bottom: 0px;
+    left: 10px;
+}
+
+.container-margin-top {
+    margin-top: 40px;
+}
+
+.my-jumbotron {
+    background-image: url("../images/jumbotronBG.jpg");
+    margin-bottom: 0;
+    padding-top: 2%;
+    height: 150px;
+    border-bottom: 6px dotted red;
+    text-align: center;
 }
 
 #social {
@@ -25,7 +61,7 @@ body {
     text-align: center;
 }
 
-.smGlobalBtn { /* global button class */
+.sm-global-btn { /* global button class */
     display: inline-block;
     position: relative;
     cursor: pointer;
@@ -46,82 +82,134 @@ body {
 }
 
 /* facebook button class*/
-.facebookBtn {
+.facebook-btn {
     background: #4060A5;
 }
 
-.facebookBtn:before { /* use :before to add the relevant icons */
+.facebook-btn:before { /* use :before to add the relevant icons */
     font-family: "Font Awesome 5 Brands";
     content: "\f09a"; /* add facebook icon */
 }
 
-.facebookBtn:hover {
+.facebook-btn:hover {
     color: #4060A5;
     background: #fff;
     border-color: #4060A5; /* change the border color on mouse hover */
 }
 
 /* twitter button class*/
-.instagramBtn {
+.instagram-btn {
     background: #e4405f;
 }
 
-.instagramBtn:before {
+.instagram-btn:before {
     font-family: "Font Awesome 5 Brands";
     content: "\f16d"; /* add instagram icon */
 
 }
 
-.instagramBtn:hover {
+.instagram-btn:hover {
     color: #e4405f;
     background: #fff;
     border-color: #e4405f;
 }
 
 /* telegram button class*/
-.telegramBtn {
+.telegram-btn {
     background: #0084ff;
 }
 
-.telegramBtn:before {
+.telegram-btn:before {
     font-family: "Font Awesome 5 Brands";
     content: "\f3fe"; /* add telegram icon */
 }
 
-.telegramBtn:hover {
+.telegram-btn:hover {
     color: #0084ff;
     background: #fff;
     border-color: #0084ff;
 }
 
 /* viber button class*/
-.viberBtn {
+.viber-btn {
     background: #8f5db7;
 }
 
-.viberBtn:before {
+.viber-btn:before {
     font-family: "Font Awesome 5 Brands";
     content: "\f409"; /* add viber icon */
 }
 
-.viberBtn:hover {
+.viber-btn:hover {
     color: #8f5db7;
     background: #fff;
     border-color: #8f5db7;
 }
 
 /* vk button class*/
-.vkBtn {
+.vk-btn {
     background: #4c75a3;
 }
 
-.vkBtn:before {
+.vk-btn:before {
     font-family: "Font Awesome 5 Brands";
     content: "\f189"; /* add pinterest icon */
 }
 
-.vkBtn:hover {
+.vk-btn:hover {
     color: #4c75a3;
     background: #fff;
     border-color: #4c75a3;
+}
+
+.my-footer {
+    background-image: linear-gradient(#ff8080, antiquewhite);
+    margin-top: 100px;
+}
+
+.underscore-width {
+    width: 60px;
+}
+
+.word-color-red {
+    color: #e62e00;
+}
+
+.word-color-light-red {
+    color: #ff704d;
+}
+
+.word-color-purple {
+    color: #b300b3;
+}
+
+.word-color-light-purple {
+    color: #9966ff;
+}
+
+.word-color-light-blue {
+    color: #00b3b3;
+}
+
+.display-none {
+    display: none;
+}
+
+.margin-between-container-product-info {
+    margin: 25px 10px;
+}
+
+.photo-size {
+    width: 238px;
+    height: 294px;
+}
+
+.logo-size {
+    width: 35px;
+    height: 35px;
+}
+
+.carousel-size {
+    width: 1600px;
+    height: 650px;
 }

@@ -21,4 +21,9 @@ public class ProducerServiceImpl implements ProducerService {
         }
         return producerDAO.add(producer);
     }
+
+    @Override
+    public List<Producer> getAll() {
+        return producerDAO.getAll();
+    }
 }

@@ -15,9 +15,9 @@ public class ProducerController {
     @Autowired
     private ProducerService producerService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addProducer(@RequestParam("name") String name) {
         producerService.add(new Producer(name));
-        return Constants.View.HOME_PAGE;
+        return Constants.View.ADD_PAGE;
     }
 }
