@@ -46,7 +46,7 @@
             </div>
             <div class="form-group">
                 <label>Image :</label>
-                <input type="button" class="btn btn-primary" value="chose image"
+                <input type="button" class="btn btn-primary" value="choice image"
                        onclick="document.getElementById('file').click();"/>
                 <input type="file" class="display-none" id="file" name="myImage"/>
             </div>

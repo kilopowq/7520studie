@@ -25,7 +25,7 @@ public class ProductController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute("Product") Product product, @RequestParam("myImage") MultipartFile myImage) {
         productService.add(product, myImage);
-        return Constants.View.ADD_PAGE;
+        return Constants.ControllerPath.ADD_BASE;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)

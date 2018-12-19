@@ -18,4 +18,8 @@ public interface Constants {
     interface Extension {
         final String IMAGE_EXTANSION = ".png";
     }
+
+    interface ControllerPath {
+        final String ADD_BASE = "redirect:/add";
+    }
 }

@@ -1,10 +1,7 @@
 package com.kilopo.kosshop.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
-import javax.persistence.EnumType;
+import javax.persistence.*;
+import java.util.Base64;
 
 @Entity
 public class Product extends BaseEntity {
@@ -13,8 +10,9 @@ public class Product extends BaseEntity {
     private String description;
     private Category category;
     private Producer producer;
-    private String image;
+    private byte[] imageBytes;
     private Color color;
+    private String base64Image ;
 
     @Column(nullable = false)
     public String getName() {
@@ -42,13 +40,18 @@ public class Product extends BaseEntity {
     }
 
     @Column
-    public String getImage() {
-        return image;
+    public byte[] getImageBytes() {
+        return imageBytes;
     }
 
     @Enumerated(EnumType.STRING)
     public Color getColor() {
         return color;
+    }
+
+    @Transient
+    public String getBase64Image() {
+        return Base64.getEncoder().encodeToString(this.imageBytes);
     }
 
     public void setProducer(Producer producer) {
@@ -71,11 +74,15 @@ public class Product extends BaseEntity {
         this.category = category;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageBytes(byte[] imageBytes) {
+        this.imageBytes = imageBytes;
     }
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
     }
 }
