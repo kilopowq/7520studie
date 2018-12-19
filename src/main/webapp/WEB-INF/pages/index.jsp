@@ -51,7 +51,7 @@
                         <c:forEach var="Product" items="${products}">
                             <div class="col-xs-12 col-sm-8 col-md-6 col-lg-3
                             container-product-info text-left margin-between-container-product-info">
-                                <img src="/photos/${Product.image}" class="photo-size" alt="Image">
+                                <img src="data:image/png;base64,${Product.base64Image}" class="photo-size" alt="Image">
                                 <h6 class="text-center text-capitalize">
                                         ${Product.category.name}: ${Product.name}</h6>
                                 <p>Producer: ${Product.producer.name}

@@ -18,6 +18,6 @@ public class CategoryController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addCategory(@RequestParam("name") String name){
         categoryService.add(new Category(name));
-        return Constants.View.ADD_PAGE;
+        return Constants.ControllerPath.ADD_BASE;
     }
 }

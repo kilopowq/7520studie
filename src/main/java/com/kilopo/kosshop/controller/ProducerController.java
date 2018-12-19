@@ -18,6 +18,6 @@ public class ProducerController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addProducer(@RequestParam("name") String name) {
         producerService.add(new Producer(name));
-        return Constants.View.ADD_PAGE;
+        return Constants.ControllerPath.ADD_BASE;
     }
 }
