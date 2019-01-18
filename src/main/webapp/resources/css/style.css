@@ -208,6 +208,10 @@ body {
     width: 35px;
     height: 35px;
 }
+local-flag-size {
+    width: 16px;
+    height: 16px;
+}
 
 .carousel-size {
     width: 1600px;
