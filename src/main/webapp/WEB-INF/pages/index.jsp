@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html>
 <head>
     <title>HomePage</title>
@@ -7,7 +8,9 @@
 <body>
 <div class="jumbotron my-jumbotron">
     <h1><b class="word-color-red">VIRGIN</b><i class="word-color-light-red">SHOP</i></h1>
-    <h3><b class="word-color-purple">for</b><i class="word-color-light-blue"> the born to be</i> <b class="word-color-light-purple">beautiful</b></h3>
+    <h3><b class="word-color-purple"><spring:message code="for.sen"/></b>
+        <i class="word-color-light-blue"><spring:message code="the.born.to.be.sen"/> </i>
+        <b class="word-color-light-purple"><spring:message code="beautiful.sen"/></b></h3>
 </div>
 <div id="demo" class="carousel slide" data-ride="carousel">
     <ul class="carousel-indicators">
@@ -19,19 +22,19 @@
         <div class="carousel-item active">
             <img src="/images/carouselOne.jpg" alt="carousel One" class="carousel-size">
             <div class="carousel-caption">
-                <h5>Extend the wardrobe!</h5>
+                <h5><spring:message code="extend.to.wardrobe.sen"/>!</h5>
             </div>
         </div>
         <div class="carousel-item">
             <img src="/images/carouselTwo.jpeg" alt="carousel Two" class="carousel-size">
             <div class="carousel-caption">
-                <h5>Enjoy shopping!</h5>
+                <h5><spring:message code="enjoy.shopping.sen"/>!</h5>
             </div>
         </div>
         <div class="carousel-item">
             <img src="/images/carouselThree.jpg" alt="Carousel Three" class="carousel-size">
             <div class="carousel-caption">
-                <h5>Be stylish!</h5>
+                <h5><spring:message code="be.stylish.sen"/>!</h5>
             </div>
         </div>
     </div>
@@ -43,6 +46,7 @@
     </a>
 </div>
 <div class="container-fluid container-margin-top">
+
     <div class="row">
         <div class="col">
             <div class="container-fluid">
@@ -54,9 +58,10 @@
                                 <img src="data:image/png;base64,${Product.base64Image}" class="photo-size" alt="Image">
                                 <h6 class="text-center text-capitalize">
                                         ${Product.category.name}: ${Product.name}</h6>
-                                <p>Producer: ${Product.producer.name}
-                                <br>${Product.description}<br>Color : ${Product.color}</p>
-                                <h6 class="container-for-price">Prise: <strong>${Product.price} USD</strong></h6>
+                                <p><spring:message code="producer.sen"/>: ${Product.producer.name}
+                                <br>${Product.description}<br>
+                                    <spring:message code="color.sen"/>: ${Product.color}</p>
+                                <h6 class="container-for-price"><spring:message code="price.sen"/>: <strong>${Product.price} $</strong></h6>
                             </div>
                         </c:forEach>
                     </div>

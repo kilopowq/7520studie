@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 
 <footer class="page-footer font-small color-dark pt-0 mb-0 my-footer">
@@ -7,7 +8,7 @@
             <div class="row py-4 d-flex align-items-center">
                 <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
                     <h5 class="mb-0 text-white">
-                        Virgin in social networks
+                        Virgin <spring:message code="footer.soc.net.sen"/>
                     </h5>
                 </div>
                 <div class="col-md-6 col-lg-7 text-center text-md-right">
@@ -26,33 +27,33 @@
         <div class="row mt-3">
             <div class="col-md-3 col-lg-4 col-xl-3 mb-4 text-center">
                 <h6 class="text-uppercase font-weight-bold">
-                    <strong>© Internet-shop "Virgin ™" 2014-2018</strong>
+                    <strong>© <spring:message code="footer.internet.shop.sen"/> "Virgin ™" 2014-2018</strong>
                 </h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto underscore-width">
-                <p><b>Call center schedule</b><br>
-                    On weekdays from 8 to 21<br>
-                    Saturday from 9 to 20<br>
-                    Sunday from 10 to 19</p>
+                <p><b><spring:message code="footer.call.center.schedule.sen"/></b><br>
+                    <spring:message code="footer.call.center.schedule.weekdays.sen"/><br>
+                    <spring:message code="footer.call.center.schedule.saturday.sen"/><br>
+                    <spring:message code="footer.call.center.schedule.sunday.sen"/></p>
             </div>
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 text-center">
-                <a href="#">Gift certificates</a><br>
-                <a href="#">Return of goods</a><br>
-                <a href="#">Questions and Answers</a><br>
-                <a href="#">Terms of use of the site</a>
+                <a href="#"><spring:message code="footer.gift.certificates.sen"/></a><br>
+                <a href="#"><spring:message code="footer.return.goods.sen"/></a><br>
+                <a href="#"><spring:message code="footer.questions.and.answers.sen"/></a><br>
+                <a href="#"><spring:message code="footer.terms.of.use.the.site.sen"/></a>
                 <br>
 
             </div>
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 text-center">
-                <a href="#">About us</a><br>
-                <a href="#">Contacts</a><br>
-                <a href="#">Collaboration with us</a><br>
-                <a href="#">Transfer money from card to card</a>
+                <a href="#"><spring:message code="footer.about.us.sen"/></a><br>
+                <a href="#"><spring:message code="footer.contacts.sen"/></a><br>
+                <a href="#"><spring:message code="footer.collaboration.with.us.sen"/></a><br>
+                <a href="#"><spring:message code="footer.trans.money.from.card.to.card.sen"/></a>
                 <br>
 
             </div>
             <div class="col-md-4 col-lg-3 col-xl-3 text-center">
                 <h6 class="text-uppercase font-weight-bold">
-                    <strong>Contacts</strong>
+                    <strong><spring:message code="footer.contacts.sen"/></strong>
                 </h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto underscore-width">
                 <p>+380503897556<br>+380995848621<br>+380637186409<br>+380932922388<br>+380978482369</p>
