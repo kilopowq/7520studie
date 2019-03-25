@@ -1,5 +1,7 @@
 package com.kilopo.kosshop.entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -20,12 +22,14 @@ public class Order extends BaseEntity {
     private User user;
     private Set<OrderProduct> orderProducts;
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public Double getSum() {
         return sum;
     }
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public Date getDate() {
         return date;
     }

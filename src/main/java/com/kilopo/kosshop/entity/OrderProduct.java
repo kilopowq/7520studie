@@ -1,5 +1,7 @@
 package com.kilopo.kosshop.entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -23,7 +25,8 @@ public class OrderProduct extends BaseEntity {
         return product;
     }
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public Integer getAmount() {
         return amount;
     }

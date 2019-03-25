@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <html>
 <head>
     <title>HomePage</title>
@@ -59,9 +59,10 @@
                                 <h6 class="text-center text-capitalize">
                                         ${Product.category.name}: ${Product.name}</h6>
                                 <p><spring:message code="producer.sen"/>: ${Product.producer.name}
-                                <br>${Product.description}<br>
+                                    <br>${Product.description}<br>
                                     <spring:message code="color.sen"/>: ${Product.color}</p>
-                                <h6 class="container-for-price"><spring:message code="price.sen"/>: <strong>${Product.price} $</strong></h6>
+                                <h6 class="container-for-price"><spring:message code="price.sen"/>:
+                                    <strong>${Product.price} $</strong></h6>
                             </div>
                         </c:forEach>
                     </div>

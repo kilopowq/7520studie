@@ -1,5 +1,7 @@
 package com.kilopo.kosshop.entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -7,14 +9,15 @@ import javax.persistence.Entity;
 public class Category extends BaseEntity {
     private String name;
 
-    public Category(){
+    public Category() {
     }
 
-    public Category(String name){
+    public Category(String name) {
         this.name = name;
     }
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
+    @NotNull
     public String getName() {
         return name;
     }

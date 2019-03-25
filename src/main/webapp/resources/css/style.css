@@ -217,3 +217,11 @@ local-flag-size {
     width: 1600px;
     height: 650px;
 }
+
+.user-logo-icon-and-username {
+    margin-right: 15px;
+}
+
+.user-logo-color{
+    color: white;
+}
