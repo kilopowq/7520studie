@@ -1,5 +1,7 @@
 package com.kilopo.kosshop.entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -10,12 +12,14 @@ public class Address extends BaseEntity {
     private String house;
     private Integer apartment;
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public String getStreet() {
         return street;
     }
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public String getHouse() {
         return house;
     }
@@ -25,7 +29,8 @@ public class Address extends BaseEntity {
         return apartment;
     }
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public String getCity() {
         return city;
     }

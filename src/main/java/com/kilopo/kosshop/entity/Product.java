@@ -1,5 +1,7 @@
 package com.kilopo.kosshop.entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import java.util.Base64;
 
@@ -12,14 +14,16 @@ public class Product extends BaseEntity {
     private Producer producer;
     private byte[] imageBytes;
     private Color color;
-    private String base64Image ;
+    private String base64Image;
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public String getName() {
         return name;
     }
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public Integer getPrice() {
         return price;
     }

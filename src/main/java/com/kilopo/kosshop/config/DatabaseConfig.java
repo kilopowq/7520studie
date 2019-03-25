@@ -36,7 +36,8 @@ public class DatabaseConfig {
         return flyway;
     }
 
-    @Bean @DependsOn("flyway")
+    @Bean
+    @DependsOn("flyway")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());

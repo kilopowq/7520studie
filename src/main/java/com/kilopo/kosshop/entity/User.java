@@ -1,9 +1,13 @@
 package com.kilopo.kosshop.entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Date;
 
 @Entity
@@ -16,33 +20,59 @@ public class User extends BaseEntity {
     private String email;
     private Date registrationDate;
     private Address address;
+    private String login;
+    private String password;
+    private Role role;
 
-    @Column(nullable = false)
+    @Column(unique = true)
+    @NotNull
+    public String getLogin() {
+        return login;
+    }
+
+    @Column
+    @NotNull
+    public String getPassword() {
+        return password;
+    }
+
+    @Enumerated(EnumType.STRING)
+    public Role getRole() {
+        return role;
+    }
+
+    @Column
+    @NotNull
     public String getName() {
         return name;
     }
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public String getSername() {
         return sername;
     }
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public String getMiddlename() {
         return middlename;
     }
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public Long getPhone() {
         return phone;
     }
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
+    @NotNull
     public String getEmail() {
         return email;
     }
 
-    @Column(nullable = false)
+    @Column
+    @NotNull
     public Date getRegistrationDate() {
         return registrationDate;
     }
@@ -78,5 +108,17 @@ public class User extends BaseEntity {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

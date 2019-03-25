@@ -1,7 +1,7 @@
 <%@ page import="com.kilopo.kosshop.entity.Category" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <html>
 <head>
     <title>AddPage</title>
@@ -25,7 +25,8 @@
         <form method="post" action="/category/add">
             <div class="form-group">
                 <label><spring:message code="name.sen"/>:</label>
-                <input type="text" class="form-control" placeholder=<spring:message code="name.sen"/> name="name"><br>
+                <input type="text" class="form-control" placeholder=
+                <spring:message code="name.sen"/> name="name"><br>
                 <center><input type="submit" class="btn btn-primary" value=<spring:message code="Submit.but"/>></center>
             </div>
         </form>
@@ -35,20 +36,24 @@
         <form method="post" modelAttribute="Product" action="/product/add" enctype="multipart/form-data">
             <div class="form-group">
                 <label><spring:message code="name.sen"/>:</label>
-                <input type="text" class="form-control" placeholder=<spring:message code="name.sen"/> name="name">
+                <input type="text" class="form-control" placeholder=
+                <spring:message code="name.sen"/> name="name">
             </div>
             <div class="form-group">
                 <label><spring:message code="price.sen"/>:</label>
-                <input type="number" class="form-control" placeholder=<spring:message code="price.sen"/> name="price">
+                <input type="number" class="form-control" placeholder=
+                <spring:message code="price.sen"/> name="price">
             </div>
             <div class="form-group">
                 <label><spring:message code="description.sen"/>:</label>
-                <input type="text" class="form-control" placeholder=<spring:message code="description.sen"/> name="description">
+                <input type="text" class="form-control" placeholder=
+                <spring:message code="description.sen"/> name="description">
             </div>
             <div class="form-group">
                 <label><spring:message code="image.sen"/>:</label>
-                <input type="button" class="btn btn-primary" value=<spring:message code="choice.image.but"/>
-                       onclick="document.getElementById('file').click();"/>
+                <input type="button" class="btn btn-primary" value=
+                <spring:message code="choice.image.but"/>
+                        onclick="document.getElementById('file').click();"/>
                 <input type="file" class="display-none" id="file" name="myImage"/>
             </div>
             <div class="row">
@@ -84,7 +89,8 @@
         <form method="post" action="/producer/add">
             <div class="form-group">
                 <label><spring:message code="name.sen"/>:</label>
-                <input type="text" class="form-control" placeholder=<spring:message code="name.sen"/> name="name"><br>
+                <input type="text" class="form-control" placeholder=
+                <spring:message code="name.sen"/> name="name"><br>
                 <center><input type="submit" class="btn btn-primary" value=<spring:message code="Submit.but"/>></center>
             </div>
         </form>

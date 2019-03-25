@@ -17,6 +17,7 @@
         <apachetiles.version>3.0.5</apachetiles.version>
         <slf4jVersion>1.7.5</slf4jVersion>
         <flyway.version>5.1.4</flyway.version>
+        <spring.security>5.1.4.RELEASE</spring.security>
     </properties>
     <profiles>
         <profile>
@@ -179,6 +180,27 @@
             <artifactId>jta</artifactId>
             <version>1.1</version>
         </dependency>
+        <!-- Security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security}</version>
+        </dependency>
         <!-- JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -244,5 +266,4 @@
             <version>2.6</version>
         </dependency>
     </dependencies>
-
 </project>
