@@ -1,9 +1,12 @@
 package com.kilopo.kosshop.entity;
 
-import javax.validation.constraints.NotNull;
+import com.kilopo.kosshop.constants.Constants;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Address extends BaseEntity {
@@ -13,13 +16,17 @@ public class Address extends BaseEntity {
     private Integer apartment;
 
     @Column
-    @NotNull
+    @NotEmpty
+    @Size(min = 1, max = 90)
+    @Pattern(regexp = Constants.RegExp.STREET, message = Constants.ValidationMessage.STREET)
     public String getStreet() {
         return street;
     }
 
     @Column
-    @NotNull
+    @NotEmpty
+    @Size(min = 1, max = 20)
+    @Pattern(regexp = Constants.RegExp.HOUSE, message = Constants.ValidationMessage.HOUSE)
     public String getHouse() {
         return house;
     }
@@ -30,7 +37,9 @@ public class Address extends BaseEntity {
     }
 
     @Column
-    @NotNull
+    @NotEmpty
+    @Size(min = 1, max = 20)
+    @Pattern(regexp = Constants.RegExp.CITY, message = Constants.ValidationMessage.CITY)
     public String getCity() {
         return city;
     }
@@ -50,4 +59,5 @@ public class Address extends BaseEntity {
     public void setStreet(String street) {
         this.street = street;
     }
+
 }
