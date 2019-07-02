@@ -68,8 +68,8 @@
                 </spring:message></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <c:url value="/j_spring_security_check" var="loginUrl"/>
-            <form name='f' action="${loginUrl}" method="POST">
+
+            <form name='f' action="/perform_login" method="POST">
                 <!-- Modal body -->
                 <div class="modal-body">
                     <c:if test="${param.error != null}">
@@ -78,10 +78,13 @@
                             </spring:message>
                         </div>
                     </c:if>
-                    <input type="text" id="myInput" class="form-control" name="j_username" placeholder="Email address"
+                    <input type="text" id="myInput" class="form-control" name="username" placeholder="Email address"
                            required autofocus value="Freezer">
-                    <input type="password" class="form-control" name="j_password" placeholder="Password" required
+                    <input type="password" class="form-control" name="password" placeholder="Password" required
                            value="1234">
+                </div>
+                <div class="registation-link-div">
+                    <a href="/registration"><spring:message code="message.registration"/></a>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
@@ -95,8 +98,26 @@
         </div>
     </div>
 </div>
+<div class="modal fade active" id="myModalSignedUp">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><spring:message code="succsessfully.sign.up"></spring:message></h4>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-block" data-dismiss="modal" type="submit">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     <c:if test="${param.error != null}">
+    $('#myModal').modal('show');
+    </c:if>
+    <c:if test="${successfullySignedUp != null}">
+    $('#myModalSignedUp').modal('show');
+    </c:if>
+    <c:if test="${param.notAuth != null}">
     $('#myModal').modal('show');
     </c:if>
 </script>

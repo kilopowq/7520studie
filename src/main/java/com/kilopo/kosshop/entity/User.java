@@ -1,12 +1,19 @@
 package com.kilopo.kosshop.entity;
 
-import javax.validation.constraints.NotNull;
+import com.kilopo.kosshop.constants.Constants;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
+
 import java.util.Date;
 
 @Entity
@@ -23,14 +30,21 @@ public class User extends BaseEntity {
     private String password;
     private Role role;
 
+    public User() {
+    }
+
     @Column(unique = true)
-    @NotNull
+    @NotEmpty
+    @Size(min = 2, max = 20)
+    @Pattern(regexp = Constants.RegExp.LOGIN, message = Constants.ValidationMessage.LOGIN)
     public String getLogin() {
         return login;
     }
 
     @Column
-    @NotNull
+    @NotEmpty
+    @Size(min = 6, max = 100)
+    @Pattern(regexp = Constants.RegExp.PASSWORD, message = Constants.ValidationMessage.PASSWORD)
     public String getPassword() {
         return password;
     }
@@ -41,42 +55,49 @@ public class User extends BaseEntity {
     }
 
     @Column
-    @NotNull
+    @NotEmpty
+    @Size(min = 1, max = 60)
+    @Pattern(regexp = Constants.RegExp.NAME, message = Constants.ValidationMessage.NAME)
     public String getName() {
         return name;
     }
 
     @Column
-    @NotNull
+    @NotEmpty
+    @Size(min = 1, max = 60)
+    @Pattern(regexp = Constants.RegExp.SERNAME, message = Constants.ValidationMessage.SERNAME)
     public String getSername() {
         return sername;
     }
 
     @Column
-    @NotNull
+    @NotEmpty
+    @Size(min = 1, max = 60)
+    @Pattern(regexp = Constants.RegExp.MIDDLENAME, message = Constants.ValidationMessage.MIDDLENAME)
     public String getMiddlename() {
         return middlename;
     }
 
-    @Column
-    @NotNull
+    @Column(unique = true)
     public Long getPhone() {
         return phone;
     }
 
     @Column(unique = true)
-    @NotNull
+    @NotEmpty
+    @Email
+    @Size(min = 1, max = 60)
     public String getEmail() {
         return email;
     }
 
     @Column
-    @NotNull
     public Date getRegistrationDate() {
         return registrationDate;
     }
 
     @ManyToOne
+    @Valid
     public Address getAddress() {
         return address;
     }
@@ -120,4 +141,5 @@ public class User extends BaseEntity {
     public void setRole(Role role) {
         this.role = role;
     }
+
 }

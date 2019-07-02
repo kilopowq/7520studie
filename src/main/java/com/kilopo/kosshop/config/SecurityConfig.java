@@ -31,17 +31,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
-
                 .authorizeRequests()
                 .antMatchers("/add/**").hasAnyAuthority("MODERATOR", "ADMIN")
                 .anyRequest().permitAll();
 
         http.formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/j_spring_security_check")
+                .loginPage("/?notAuth=true")
+                .loginProcessingUrl("/perform_login")
                 .failureUrl("/?error=true")
-                .usernameParameter("j_username")
-                .passwordParameter("j_password")
+                .usernameParameter("username")
+                .passwordParameter("password")
                 .permitAll();
 
         http.logout()

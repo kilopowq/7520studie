@@ -25,4 +25,10 @@
         <put-attribute name="body" value="/WEB-INF/pages/add.jsp"/>
         <put-attribute name="current" value="add"/>
     </definition>
+    <!-- Registration Page -->
+    <definition name="registration" extends="base-definition">
+        <put-attribute name="title" value="RegistrationPage"/>
+        <put-attribute name="body" value="/WEB-INF/pages/registration.jsp"/>
+        <put-attribute name="current" value="registration"/>
+    </definition>
 </tiles-definitions>

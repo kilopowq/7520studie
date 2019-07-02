@@ -225,3 +225,16 @@ local-flag-size {
 .user-logo-color{
     color: white;
 }
+
+.registation-link-div{
+    padding: 0px 0px 8px 20px;
+}
+
+.registration-form-div {
+    width: 500px;
+    padding: 30 0 0 40px;
+}
+
+.errormsg {
+    color: red;
+}
