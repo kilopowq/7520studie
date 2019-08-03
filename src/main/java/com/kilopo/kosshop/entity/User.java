@@ -2,19 +2,21 @@ package com.kilopo.kosshop.entity;
 
 import com.kilopo.kosshop.constants.Constants;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import javax.validation.constraints.Email;
-
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -25,12 +27,18 @@ public class User extends BaseEntity {
     private Long phone;
     private String email;
     private Date registrationDate;
-    private Address address;
+    private List<Address> address;
     private String login;
     private String password;
     private Role role;
+    private boolean approval;
 
     public User() {
+    }
+
+    @Column
+    public boolean getApproval() {
+        return approval;
     }
 
     @Column(unique = true)
@@ -96,13 +104,13 @@ public class User extends BaseEntity {
         return registrationDate;
     }
 
-    @ManyToOne
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     @Valid
-    public Address getAddress() {
+    public List<Address> getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(List<Address> address) {
         this.address = address;
     }
 
@@ -142,4 +150,7 @@ public class User extends BaseEntity {
         this.role = role;
     }
 
+    public void setApproval(boolean approval) {
+        this.approval = approval;
+    }
 }

@@ -61,39 +61,39 @@
                  </spring:bind>
              </div>
              <div class="form-group">
-                 <spring:bind path="address.city">
+                 <spring:bind path="address[0].city">
                  <spring:message code="city.sen"/>:
-                 <springForm:input path="address.city" type="text" pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
+                 <springForm:input path="address[0].city" type="text" pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
                                    title="Must contain city name" class="form-control ${status.error ? 'is-invalid' : ''}"
                                    id="addressCityForm" placeholder="New-York" cssStyle="width: 45%"/>
-                 <springForm:errors path="address.city" id="addressCityError" cssClass="errormsg" />
+                 <springForm:errors path="address[0].city" id="addressCityError" cssClass="errormsg" />
                  </spring:bind>
              </div>
             <div class="form-group">
-                <spring:bind path="address.street">
+                <spring:bind path="address[0].street">
                 <spring:message code="street.sen"/>:
-                <springForm:input path="address.street" type="text" pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
+                <springForm:input path="address[0].street" type="text" pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$"
                                   title="Must contain street name" class="form-control ${status.error ? 'is-invalid' : ''}"
                                   id="addressStreetForm" placeholder="Great Jones" cssStyle="width: 45%"/>
-                <springForm:errors path="address.street" id="addressStreetError" cssClass="errormsg" />
+                <springForm:errors path="address[0].street" id="addressStreetError" cssClass="errormsg" />
                 </spring:bind>
             </div>
            <div class="form-group">
-                <spring:bind path="address.house">
+                <spring:bind path="address[0].house">
                 <spring:message code="house.sen"/>:
-                <springForm:input path="address.house" type="text" pattern="^\d+[a-zA-Z]{0,1}$"
+                <springForm:input path="address[0].house" type="text" pattern="^\d+[a-zA-Z]{0,1}$"
                                   title="Must contain house number" class="form-control ${status.error ? 'is-invalid' : ''}"
                                   id="addressHouseForm" placeholder="32A" cssStyle="width: 15%"/>
-                <springForm:errors path="address.house" id="addressHouseError" cssClass="errormsg" />
+                <springForm:errors path="address[0].house" id="addressHouseError" cssClass="errormsg" />
                 </spring:bind>
             </div>
              <div class="form-group">
-                 <spring:bind path="address.apartment">
+                 <spring:bind path="address[0].apartment">
                 <spring:message code="apartment.sen"/>:
-                <springForm:input path="address.apartment" type="text" title="Must contain apartment number" pattern="\d*"
+                <springForm:input path="address[0].apartment" type="text" title="Must contain apartment number" pattern="\d*"
                                   class="form-control ${status.error ? 'is-invalid' : ''}"
                                   id="address.apartmentForm" placeholder="123" cssStyle="width: 15%"/>
-                <springForm:errors path="address.apartment" id="address.apartmentError" cssClass="errormsg" />
+                <springForm:errors path="address[0].apartment" id="address.apartmentError" cssClass="errormsg" />
                  </spring:bind>
             </div>
             <div class="form-group">

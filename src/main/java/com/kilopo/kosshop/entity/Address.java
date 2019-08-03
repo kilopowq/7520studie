@@ -4,6 +4,8 @@ import com.kilopo.kosshop.constants.Constants;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -14,6 +16,17 @@ public class Address extends BaseEntity {
     private String street;
     private String house;
     private Integer apartment;
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Column
     @NotEmpty

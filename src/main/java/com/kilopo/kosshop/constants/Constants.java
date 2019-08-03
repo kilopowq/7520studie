@@ -7,6 +7,9 @@ public interface Constants {
     interface Database {
         final String PROPERTIES_SOURCE = "classpath:db.properties";
     }
+    interface ProjectUrl {
+        final String BASE_URL = "classpath:project.properties";
+    }
 
     interface View {
         final String HOME_PAGE = "home";
