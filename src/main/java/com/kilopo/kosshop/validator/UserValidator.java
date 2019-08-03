@@ -35,9 +35,10 @@ public class UserValidator implements Validator {
     @Override
     public void validate(Object objectUser, Errors errors) {
         User user = (User) objectUser;
+
         Locale l = LocaleContextHolder.getLocale();
         MessageSourceAccessor messageSourceAccessor = new MessageSourceAccessor(messageSource, l);
-        //phone numbers validation
+
         if (nonNull(user.getPhone())) {
             if (user.getPhone() < 380500000000L || user.getPhone() > 380999999999L) {
                 errors.rejectValue("phone", "already exist", messageSourceAccessor.getMessage("this.phone.number.is.Invalid"));
@@ -47,7 +48,7 @@ public class UserValidator implements Validator {
         List<User> loginUser = userService.getByColumnNameAndValue("login", user.getLogin());
         List<User> emailUser = userService.getByColumnNameAndValue("email", user.getEmail());
         List<User> phoneUser = userService.getByColumnNameAndValue("phone", user.getPhone());
-        //check if in DB phone or login or email exists
+
         if (!emailUser.isEmpty()) {
             errors.rejectValue("email", "already exist", messageSourceAccessor.getMessage("such.email.already.exist"));
         } else if (!loginUser.isEmpty()) {
@@ -55,7 +56,10 @@ public class UserValidator implements Validator {
         } else if (!phoneUser.isEmpty()) {
             errors.rejectValue("phone", "already exist", messageSourceAccessor.getMessage("such.phone.already.exist"));
         }
+
     }
+
+
 
 
 }

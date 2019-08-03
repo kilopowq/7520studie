@@ -6,6 +6,7 @@
 <head>
     <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="/script/modal_windows.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
@@ -98,11 +99,11 @@
         </div>
     </div>
 </div>
-<div class="modal fade active" id="myModalSignedUp">
+<div class="modal fade active" id="myModalApprovalSentLink">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><spring:message code="succsessfully.sign.up"></spring:message></h4>
+                <h5 class="modal-title"><spring:message code="approve.link.sent.to.your.email"></spring:message></h5>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary btn-block" data-dismiss="modal" type="submit">OK</button>
@@ -110,16 +111,52 @@
         </div>
     </div>
 </div>
-<script>
-    <c:if test="${param.error != null}">
-    $('#myModal').modal('show');
-    </c:if>
-    <c:if test="${successfullySignedUp != null}">
-    $('#myModalSignedUp').modal('show');
-    </c:if>
-    <c:if test="${param.notAuth != null}">
-    $('#myModal').modal('show');
-    </c:if>
-</script>
+<div class="modal fade active" id="myModalApproved" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><spring:message code="successfully.approved"></spring:message></h4>
+            </div>
+            <div class="modal-footer">
+                <div><h4>${param.Login}</h4></div>
+                <div><a href="/" class="btn btn-info" role="button"><i aria-hidden="true"></i>
+                    OK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade active" id="myModalNotApproved" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><spring:message code="unsuccessfully.approved"></spring:message></h4>
+            </div>
+            <div class="modal-footer">
+                <div><a href="/" class="btn btn-info" role="button"><i aria-hidden="true"></i>
+                    OK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<c:if test="${param.error != null}">
+    <input type="hidden" id="paramError" value="paramError">
+</c:if>
+<c:if test="${param.Login != null}">
+    <input type="hidden" id="paramLogin" value="paramLogin">
+</c:if>
+<c:if test="${notApproved != null}">
+    <input type="hidden" id="notApproved" value="notApproved">
+</c:if>
+<c:if test="${approvalLinkSended != null}">
+    <input type="hidden" id="approvalLinkSended" value="approvalLinkSended">
+</c:if>
+<c:if test="${param.notAuth != null}">
+    <input type="hidden" id="notAuthorized" value="notAuthorized">
+</c:if>
+
 </body>
 </html>

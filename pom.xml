@@ -23,6 +23,7 @@
         <profile>
             <id>develop</id>
             <properties>
+                <project.base.url>http://localhost:8082/</project.base.url>
                 <hostname>localhost</hostname>
                 <port>5432</port>
                 <database>kosshop</database>
@@ -33,6 +34,7 @@
         <profile>
             <id>release</id>
             <properties>
+                <project.base.url>https://kosshop.herokuapp.com/</project.base.url>
                 <hostname>ec2-79-125-8-105.eu-west-1.compute.amazonaws.com</hostname>
                 <port>5432</port>
                 <database>ddo5hl7agkuutn?sslmode=require</database>
@@ -275,6 +277,16 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>6.0.13.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.5</version>
         </dependency>
     </dependencies>
 </project>
