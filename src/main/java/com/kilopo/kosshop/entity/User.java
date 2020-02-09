@@ -17,6 +17,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -32,6 +33,7 @@ public class User extends BaseEntity {
     private String password;
     private Role role;
     private boolean approval;
+    private Set<Cart> carts;
 
     public User() {
     }
@@ -110,6 +112,11 @@ public class User extends BaseEntity {
         return address;
     }
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
+    public Set<Cart> getCarts() {
+        return carts;
+    }
+
     public void setAddress(List<Address> address) {
         this.address = address;
     }
@@ -152,5 +159,9 @@ public class User extends BaseEntity {
 
     public void setApproval(boolean approval) {
         this.approval = approval;
+    }
+
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
     }
 }

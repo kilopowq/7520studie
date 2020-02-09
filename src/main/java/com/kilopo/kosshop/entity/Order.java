@@ -10,13 +10,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "orders")
 public class Order extends BaseEntity {
-    private Double sum;
+    private BigDecimal sum;
     private Date date;
     private OrderStatus orderStatus;
     private User user;
@@ -24,7 +25,7 @@ public class Order extends BaseEntity {
 
     @Column
     @NotNull
-    public Double getSum() {
+    public BigDecimal getSum() {
         return sum;
     }
 
@@ -54,7 +55,7 @@ public class Order extends BaseEntity {
         this.orderProducts = orderProducts;
     }
 
-    public void setSum(Double sum) {
+    public void setSum(BigDecimal sum) {
         this.sum = sum;
     }
 

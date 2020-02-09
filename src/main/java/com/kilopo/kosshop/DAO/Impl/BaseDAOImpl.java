@@ -61,7 +61,7 @@ public class BaseDAOImpl<T> implements BaseDAO<T> {
     @Transactional
     public boolean delete(Long id) {
         try {
-            StringBuilder stringBuilder = new StringBuilder("DELETE FROM")
+            StringBuilder stringBuilder = new StringBuilder("DELETE FROM ")
                     .append(entityClass.getName())
                     .append(" AS a WHERE a.id = :id");
             Query query = entityManager.createQuery(stringBuilder.toString());
