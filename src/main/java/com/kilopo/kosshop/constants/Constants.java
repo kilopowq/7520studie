@@ -16,6 +16,7 @@ public interface Constants {
         final String PRODUCTS_PAGE = "products";
         final String ADD_PAGE = "add";
         final String REGISTRATION = "registration";
+        final String PRODUCTS_VIEW = "../tiles/template/header";
 
     }
 

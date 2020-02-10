@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label><spring:message code="price.sen"/>:</label>
-                <input type="number" class="form-control" placeholder=
+                <input type="number" step="0.01" class="form-control" placeholder=
                 <spring:message code="price.sen"/> name="price">
             </div>
             <div class="form-group">
@@ -74,7 +74,7 @@
                     </select><br>
                 </div>
                 <div class="col">
-                    <label class="inputState"><spring:message code="product.sen"/>:</label>
+                    <label class="inputState"><spring:message code="producer.sen"/>:</label>
                     <select class="form-control form-control-sm" name="producer.id">
                         <c:forEach var="Producer" items="${producers}">
                             <option value="${Producer.id}">${Producer.name}</option>

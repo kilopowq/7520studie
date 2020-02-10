@@ -2,13 +2,19 @@ package com.kilopo.kosshop.entity;
 
 import javax.validation.constraints.NotNull;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+import java.math.BigDecimal;
 import java.util.Base64;
 
 @Entity
 public class Product extends BaseEntity {
     private String name;
-    private Integer price;
+    private BigDecimal price;
     private String description;
     private Category category;
     private Producer producer;
@@ -24,7 +30,7 @@ public class Product extends BaseEntity {
 
     @Column
     @NotNull
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -66,7 +72,7 @@ public class Product extends BaseEntity {
         this.name = name;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

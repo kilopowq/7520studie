@@ -1,6 +1,7 @@
 package com.kilopo.kosshop.controller;
 
 import com.kilopo.kosshop.constants.Constants;
+import com.kilopo.kosshop.entity.Cart;
 import com.kilopo.kosshop.entity.Product;
 import com.kilopo.kosshop.service.CategoryService;
 import com.kilopo.kosshop.service.ProductService;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/product")
@@ -33,6 +36,29 @@ public class ProductController {
         modelmap.addAttribute("products", productService.getAll());
         modelmap.addAttribute("categories", categoryService.getAll());
         return Constants.View.PRODUCTS_PAGE;
+    }
+
+    @RequestMapping(value="/products_view", method = RequestMethod.GET)
+    public String getCart(HttpSession session, ModelMap model) {
+        model.addAttribute("cart", getNewOrSessionCart(session));
+        return "data/cart";
+    }
+
+    @RequestMapping(value="/products_view1", method = RequestMethod.GET)
+    public String getCarst(HttpSession session, ModelMap model) {
+        model.addAttribute("cart", getNewOrSessionCart(session));
+        return "tags/products_view";
+    }
+    private Cart getNewOrSessionCart(HttpSession session) {
+        if (session.getAttribute("cart") != null) {
+        } else {
+            Cart cart = new Cart();
+            session.setAttribute("cart", cart);
+        }
+        return (Cart) session.getAttribute("cart");
+    }
+    private void addCartProductToSessionCart(Cart cart, HttpSession session){
+        session.setAttribute("cart", cart);
     }
 
     @RequestMapping(value = "/searchByCategory", method = RequestMethod.GET)

@@ -1,9 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>ProductsPage</title>
+    <script src="/script/cart.js"></script>
 </head>
 <body>
 <div class="container-fluid container-margin-top">
@@ -36,6 +38,7 @@
                     </c:if>
                     <div class="row text-center justify-content-center">
                         <c:forEach var="Product" items="${products}">
+                            <form method="post" action="/cart/add">
                             <div class="col-xs-12 col-sm-8 col-md-5 col-lg-4 col-xl-3 container-product-info text-left">
                                 <img src="data:image/png;base64,${Product.base64Image}" class="photo-size" alt="Image">
                                 <h6 class="text-center text-capitalize">
@@ -46,7 +49,14 @@
                                 <h6 class="container-for-price"><spring:message code="price.sen"/>:
                                     <strong>${Product.price} $</strong>
                                 </h6>
+                                <input type="hidden" id="myIdPr+${Product.id}" value=${Product.id} name="productId">
+                                <input type="button" class="btn btn-primary"
+                                       data-target="#myModalAddedToYourShoppingCart"
+                                       onclick="showHint(${Product.id})"
+                                       value=<spring:message code="add.to.cart.sen"/>>
                             </div>
+                            </form>
+
                         </c:forEach>
                     </div>
                 </div>

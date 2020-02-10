@@ -13,6 +13,17 @@ body {
     box-shadow: 0 3px 4px #999;
 }
 
+.container-cartProduct-info {
+    min-width: 95%;
+    max-width: 95%;
+    min-height: 320px;
+    border: 1px solid #000000;
+    margin: 25px 20px;
+    padding: 10px 10px;
+    background-color: white;
+    box-shadow: 0 3px 4px #999;
+}
+
 #addFormCategory {
     margin-top: 3%;
     border: 2px solid #000000; /* add border to the buttons */
@@ -208,7 +219,7 @@ body {
     width: 35px;
     height: 35px;
 }
-local-flag-size {
+.local-flag-size {
     width: 16px;
     height: 16px;
 }
@@ -232,9 +243,95 @@ local-flag-size {
 
 .registration-form-div {
     width: 500px;
-    padding: 30 0 0 40px;
+    padding: 30px 0 0 40px;
 }
 
 .errormsg {
     color: red;
+}
+
+.fa-stack[data-count]:after{
+    position:absolute;
+    right:0%;
+    top:0%;
+    content: attr(data-count);
+    font-size:40%;
+    padding:.6em;
+    border-radius:999px;
+    line-height:.75em;
+    color: white;
+    text-align:center;
+    min-width:2em;
+    font-weight:bold;
+    background: #ff3333;
+
+}
+
+.fa-circle {
+    color:#343A40;
+}
+
+#buttonLoadCart {
+    cursor: pointer;
+}
+
+/**/
+
+
+#cart-container {
+    float: right;
+    width: 210px;
+    position: relative;
+}
+
+#itemCount {
+    position: absolute;
+    display: none;
+    top: -10px;
+    left: -10px;
+    width: 25px;
+    height: 20px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    text-align: center;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+.number{
+     margin: 120px 0px 0px 0px;
+}
+
+.sum {
+
+    margin: 127px 0px 0px -10px;
+}
+.yellow-background{
+    background: #FFD700;
+}
+
+.minus, .plus{
+    cursor:pointer;
+    width:42px;
+    height:42px;
+    background:#f2f2f2;
+    border-radius:8px;
+    padding:8px 5px 8px 5px;
+    border:1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+.inputs {
+    height: 36px;
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
 }

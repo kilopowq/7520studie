@@ -53,8 +53,9 @@
                 <div class="container">
                     <div class="row text-center justify-content-center">
                         <c:forEach var="Product" items="${products}">
-                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-3
-                            container-product-info text-left margin-between-container-product-info">
+                            <form method="post" action="/cart/add">
+                                <div class="col-xs-12 col-sm-8 col-md-6 col-lg-3
+                                    container-product-info text-left margin-between-container-product-info">
                                 <img src="data:image/png;base64,${Product.base64Image}" class="photo-size" alt="Image">
                                 <h6 class="text-center text-capitalize">
                                         ${Product.category.name}: ${Product.name}</h6>
@@ -63,7 +64,13 @@
                                     <spring:message code="color.sen"/>: ${Product.color}</p>
                                 <h6 class="container-for-price"><spring:message code="price.sen"/>:
                                     <strong>${Product.price} $</strong></h6>
-                            </div>
+                                    <input type="hidden" id="myIdPr+${Product.id}" value=${Product.id} name="productId">
+                                    <input type="button" class="btn btn-primary"
+                                           data-target="#myModalAddedToYourShoppingCart"
+                                           onclick="showHint(${Product.id})"
+                                           value=<spring:message code="add.to.cart.sen"/>>
+                                </div>
+                            </form>
                         </c:forEach>
                     </div>
                 </div>

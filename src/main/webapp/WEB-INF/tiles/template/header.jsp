@@ -2,11 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <html>
 <head>
     <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="/script/modal_windows.js"></script>
+    <script src="/script/cart.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
@@ -58,6 +61,16 @@
                 <spring:message code="header.logout.but"/></a>
         </form>
     </sec:authorize>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <span id="buttonLoadCart" class="fa-stack fa-2x has-badge"
+                  data-count="${(sessionScope.cart.countOfProducts) != null ? (sessionScope.cart.countOfProducts) : 0}"
+                  data-toggle="modal" data-target="#myModalCart">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+            </span>
+        </li>
+    </ul>
 </nav>
 <!-- The Modal Authorization -->
 <div class="modal fade active" id="myModal">
@@ -140,7 +153,105 @@
         </div>
     </div>
 </div>
+<!-- Cart modal  -->
+<div class="modal fade active" id="myModalCart" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"><spring:message code="header.modal.your.cart">
+                </spring:message></h4>
+                <button type="button" class="close" data-dismiss="modal" onclick="javascript:window.location.reload()">&times;</button>
+            </div>
 
+            <form name='f' action="/" method="POST">
+                <!-- Modal body -->
+
+                <c:if test="${empty cartProduct}">
+                    <h2><spring:message code="producer.sen"/></h2>
+                </c:if>
+                <c:if test="${cart != null}">
+                    <h2${cart}</h2>
+                </c:if>
+                <div id ="products_table">
+                    <c:forEach var="CartProduct" items="${sessionScope.cart.cartProducts}">
+                        <div class="col-xs-12 col-sm-8 col-md-5 col-lg-4 col-xl-3 container-cartProduct-info text-left">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="data:image/png;base64,${CartProduct.product.base64Image}" class="photo-size" alt="Image">
+                                </div>
+                                <div class="col-md-3">
+                                    <h6 class="text-capitalize">
+                                            ${CartProduct.product.category.name}: ${CartProduct.product.name}</h6>
+                                    <h6 class="text-capitalize">${CartProduct.product.description}</h6>
+                                    <h6 class="text-capitalize"><spring:message code="producer.sen"/>:
+                                            ${CartProduct.product.producer.name}</h6>
+                                    <h6><spring:message code="color.sen"/>: ${CartProduct.product.color}</h6>
+                                    <h6 class="container-for-price"><spring:message code="price.sen"/>:
+                                        <strong>${CartProduct.product.price} $</strong>
+                                    </h6>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="number">
+                                        <span class="minus" onclick="decrease(${CartProduct.product.id})">-</span>
+                                        <input id="input-amount" class="inputs" type="text" value="${CartProduct.amount}"
+                                               onfocusout="inputChange(${CartProduct.product.id})"/>
+                                        <span class="plus" onclick="increase(${CartProduct.product.id})">+</span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="close"
+                                            onclick="removeCartProductFromCart(${CartProduct.product.id})">&times;</button>
+                                    <p class="sum"><b><spring:message code="sum.sen"/></b>
+                                        <span class="yellow-background">${CartProduct.sum}$</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block" type="submit"><spring:message code="header.modal.confirm">
+                    </spring:message></button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><spring:message
+                            code="header.modal.close">
+                    </spring:message></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade active" id="myModalAddedToYourShoppingCart">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><spring:message code="item.added.to.your.cart"></spring:message></h4>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-block" data-dismiss="modal" type="submit">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade active" id="removeProductConfirmModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><spring:message code="remove.item.from.cart"></spring:message></h4>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="modelButtonOk" data-dismiss="modal" type="submit">OK</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><spring:message
+                        code="header.modal.close">
+                </spring:message></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
 
 <c:if test="${param.error != null}">
     <input type="hidden" id="paramError" value="paramError">
@@ -157,6 +268,7 @@
 <c:if test="${param.notAuth != null}">
     <input type="hidden" id="notAuthorized" value="notAuthorized">
 </c:if>
+
 
 </body>
 </html>
