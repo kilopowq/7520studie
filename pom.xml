@@ -17,7 +17,7 @@
         <apachetiles.version>3.0.8</apachetiles.version>
         <slf4jVersion>1.7.26</slf4jVersion>
         <flyway.version>5.1.4</flyway.version>
-        <spring.security>5.1.4.RELEASE</spring.security>
+        <spring.security>5.2.10.RELEASE</spring.security>
     </properties>
     <profiles>
         <profile>
