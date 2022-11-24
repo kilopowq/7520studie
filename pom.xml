@@ -12,7 +12,7 @@
         <spring.version>5.1.5.RELEASE</spring.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <spring-data-jpa.version>2.1.5.RELEASE</spring-data-jpa.version>
-        <hibernate.version>5.3.9.Final</hibernate.version>
+        <hibernate.version>5.3.20.Final</hibernate.version>
         <commons-dbcp2.version>2.1.1</commons-dbcp2.version>
         <apachetiles.version>3.0.8</apachetiles.version>
         <slf4jVersion>1.7.26</slf4jVersion>
